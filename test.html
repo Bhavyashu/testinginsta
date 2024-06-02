@@ -4,9 +4,23 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Redirect from Instagram Browser</title>
+    <style>
+        .message {
+            text-align: center;
+            margin-top: 50px;
+        }
+        .message button {
+            padding: 10px 20px;
+            font-size: 16px;
+            cursor: pointer;
+        }
+    </style>
 </head>
 <body>
     <h1>Hi hello how are you</h1>
+    <div id="message" class="message" style="display: none;">
+        <p>Redirecting to Chrome for the best experience...</p>
+    </div>
     <script>
         function isInstagramBrowser() {
             const ua = navigator.userAgent || navigator.vendor || window.opera;
@@ -15,19 +29,15 @@
 
         function redirectToChrome() {
             const chromeIntent = "intent://openurl.com#Intent;scheme=https;package=com.android.chrome;end";
-            window.location = chromeIntent;
+            window.location.href = chromeIntent;
         }
 
-        if (isInstagramBrowser()) {
-            // // Display a message to the user
-            // document.body.innerHTML = "<p>Please open this link in Chrome for the best experience. Click <a href='#' id='openInChrome'>here</a> to open in Chrome.</p>";
-
-            // // Add event listener to the link    
-            // document.getElementById('openInChrome').addEventListener('click', function(event) {
-                // event.preventDefault();
+        document.addEventListener('DOMContentLoaded', function() {
+            if (isInstagramBrowser()) {
+                document.getElementById('message').style.display = 'block';
                 redirectToChrome();
-            // });
-        }
+            }
+        });
     </script>
 </body>
 </html>
