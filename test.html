@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Redirect from Instagram Browser</title>
+</head>
+<body>
+    <h1>Hi hello how are you</h1>
+    <script>
+        function isInstagramBrowser() {
+            const ua = navigator.userAgent || navigator.vendor || window.opera;
+            return (ua.indexOf('Instagram') > -1);
+        }
+
+        function redirectToChrome() {
+            const chromeIntent = "intent://openurl.com#Intent;scheme=https;package=com.android.chrome;end";
+            window.location = chromeIntent;
+        }
+
+        if (isInstagramBrowser()) {
+            // Display a message to the user
+            document.body.innerHTML = "<p>Please open this link in Chrome for the best experience. Click <a href='#' id='openInChrome'>here</a> to open in Chrome.</p>";
+
+            // Add event listener to the link
+            document.getElementById('openInChrome').addEventListener('click', function(event) {
+                event.preventDefault();
+                redirectToChrome();
+            });
+        }
+    </script>
+</body>
+</html>
